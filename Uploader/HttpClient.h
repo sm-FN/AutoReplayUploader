@@ -45,6 +45,22 @@ struct PostFileRequest
 	string ResponseBody;
 };
 
+struct PostJsonRequest
+{
+	unsigned int RequestId = 0;
+	void* Requester = NULL;
+
+	string Url;
+	list<string> Headers;
+
+	string body;
+
+	void(*RequestComplete)(PostJsonRequest*);
+	long Status;
+	string Message;
+	string ResponseBody;
+};
+
 struct GetRequest
 {
 	unsigned int RequestId = 0;
@@ -61,5 +77,6 @@ long Get(GetRequest* request);
 void GetAsync(GetRequest* request);
 
 void PostFileAsync(PostFileRequest* request);
+void PostJsonAsync(PostJsonRequest* request);
 long PostFile(PostFileRequest* request);
 string AppendGetParams(string baseUrl, map<string, string> getParams);
